@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user">
+
+	<select id = "getByEmailAndPassword" parameterType="uservo"
+	resultType ="uservo">
+	
+	<![CDATA[
+	select no,
+		id,
+		name,
+		email,
+		birth,
+		tel,
+		phone,
+		passwd,
+		zip,
+		addr
+	from user  
+	where id = #{id} 
+	and passwd = password(#{passwd})
+	
+	]]>
+	
+	</select>
+	
+	
+	<select id = "getlist" resultType ="uservo">
+	
+	<![CDATA[
+	select *
+	from user  
+	]]>
+	
+	</select>
+	
+	<select id = "getcount" resultType ="long">
+	
+	<![CDATA[
+	select count(no)
+	from user  
+	]]>
+	
+	</select>
+	
+		<select id = "getproductcount" resultType ="long">
+	
+	<![CDATA[
+	select count(no)
+	from product  
+	]]>
+	
+	</select>
+	
+	<select id = "getcategorycount" resultType ="long">
+	
+	<![CDATA[
+	select count(cate_no)
+	from category  
+	]]>
+	
+
+	</select>
+	
+	<select id = "getbuycount" resultType ="long">
+	
+	<![CDATA[
+	select count(no)
+	from buy  
+	]]>
+	
+
+	</select>
+	
+	
+	
+	
+	<select id = "getByNo" parameterType="long"
+	resultType ="uservo">
+	
+	<![CDATA[
+	select no, 
+		   email,
+		  name,
+		  gender
+	from users  
+	where no = #{no}  
+
+	]]>
+	
+	</select>
+		
+	<insert id = "insert" parameterType="uservo">
+	 <![CDATA[
+	insert 
+	into user 
+	values(null,#{grade},#{name},#{tel},#{phone},#{id},password(#{passwd}),#{birth},#{zip},#{addr},#{email})
+	
+	]]>
+	</insert>
+	
+	<update id="update" parameterType="uservo">
+	 <![CDATA[
+		update user
+		set name = #{name},
+		tel = #{tel},
+		phone = #{phone},
+		id=#{id},
+		passwd = password(#{passwd}),
+		birth = #{birth},
+		zip = #{birth},
+		addr = #{addr},
+		email = #{email}
+		where no= #{no}
+			]]>
+		
+		</update>
+		
+		
+	<insert id="categoryadd" parameterType ="categoryvo" >
+
+	<![CDATA[
+	
+			insert
+			into category
+			values(null,#{posttype},#{user_no})
+
+
+	]]>
+	
+	<selectKey keyProperty="cate_no" resultType="Long"   order="BEFORE">
+	<![CDATA[
+		select last_insert_id()
+	]]>
+
+	</selectKey>
+</insert>
+
+<select id="getcategory" resultType="categoryvo" >
+	<![CDATA[
+	
+			select * from category
+
+
+	]]>
+	</select>
+
+<delete id="categorydelete" parameterType = "Long">
+<![CDATA[
+		
+		delete from category where cate_no = #{cate_no}
+		
+]]>
+</delete>
+
+
+<delete id="jumundelete" parameterType = "Long">
+<![CDATA[
+		
+		delete from buy where no = #{no}
+		
+]]>
+</delete>
+
+
+<delete id="orderjumundelete" parameterType = "Long">
+<![CDATA[
+		
+		delete from orderProduct where order_no = #{order_no}
+		
+]]>
+</delete>
+
+<insert id = "addproduct" parameterType="productvo">
+<![CDATA[
+	
+	insert 
+	into product 
+	values(null,#{cate_no},#{code},#{productName},#{company},#{price},#{state},#{content},#{image},#{event},#{opt_no})
+	
+	]]>
+	</insert>
+
+<select id="getproduct" resultType="productvo" >
+	<![CDATA[
+	
+			select * from product
+
+
+	]]>
+	</select>
+
+<delete id="productdelete" parameterType = "Long">
+<![CDATA[
+		
+		delete from product where no = #{no}
+		
+]]>
+</delete>
+		
+<select id="getproductbyno" resultType="productvo" parameterType = "Long" >
+	<![CDATA[
+	
+			select no,cate_no, code, productName, price, state, content,image,event from product where no = #{no}
+
+
+	]]>
+	</select>		
+		
+		
+	<select id="getimage" resultType="string" parameterType = "string" >
+	<![CDATA[
+	
+			select image from product where productName = #{name}
+			
+	]]>
+	</select>
+	
+	
+	<insert id = "addbuy" parameterType="buyvo">
+	 <![CDATA[
+	insert 
+	into buy 
+	values(null,now(),#{orderName},#{orderphone},#{orderEmail},
+	#{orderAddr},#{totalprice},#{pay},#{card},#{account},#{halbu},#{user_no})
+	
+	]]>
+	
+	
+	<selectKey keyProperty="no" resultType="Long"   order="AFTER">
+	<![CDATA[
+		select last_insert_id()
+	]]>
+
+	</selectKey>
+	
+	
+	</insert>		
+	
+	
+	<insert id = "addorder" parameterType="orderproductvo">
+	 <![CDATA[
+	insert 
+	into orderproduct
+	values(#{product_no},#{order_no},#{num})
+	
+	]]>
+	</insert>	
+	
+	<select id="getbuylist" resultType="buyvo" >
+	<![CDATA[
+	
+			select * from buy where user_no = #{user_no}
+
+
+	]]>
+	</select>
+	
+		<select id="buylistbyno" parameterType = "long" resultType="buyvo" >
+	<![CDATA[
+	
+			select * from buy where no = #{no}
+
+
+	]]>
+	</select>
+	
+	
+		
+	<select id="getbuyinfo" parameterType ="Long" resultType="buyvo" >
+	<![CDATA[
+	
+			select * from buy where no = #{no}
+
+
+	]]>
+	</select>
+	
+	
+	<insert id = "addcart" parameterType="cartvo">
+	 <![CDATA[
+	insert 
+	into cart 
+ 	values(null,#{user_no},#{product_no},#{cartPrice},#{productName},#{image},#{num}) 
+	
+	]]>
+	</insert>
+	
+	<select id="cartlist" parameterType="Long" resultType="cartvo" >
+	<![CDATA[
+	
+			select * from cart where user_no = #{user_no}
+
+
+	]]>
+	</select>
+	
+	
+		<select id="cartjoinpro" parameterType="Long" resultType="cartvo" >
+	<![CDATA[
+	
+		select *
+		from cart c 
+		join product p on c.product_no = p.no
+		where p.no = #{no};
+
+
+	]]>
+	</select>
+	
+	
+	<select id="pronumbycart" parameterType="Long" resultType="cartvo" >
+	<![CDATA[
+	
+			select product_no, num from cart where user_no = #{user_no}
+
+
+	]]>
+	</select>
+	
+	
+	
+	
+	<delete id="deletecart" parameterType = "Long">
+<![CDATA[
+		
+		delete from cart where cart_no = #{cart_no}
+		
+]]>
+</delete>
+	
+		
+	<delete id="cartalldelete" >
+<![CDATA[
+		
+		delete from cart 
+		
+]]>
+</delete>
+	
+	
+		<select id="getprolistbyno" parameterType="Long" resultType="productvo" >
+	<![CDATA[
+	
+			select * from product where cate_no = #{cate_no}
+
+
+	]]>
+	</select>
+	
+	
+	
+		<select id="allbuylist"  resultType="buyvo" >
+	<![CDATA[
+	
+			select * from buy 
+
+
+	]]>
+	</select>
+	
+	
+	<select id="jumunlist" parameterType="long" resultType="buyvo" >
+	<![CDATA[
+	
+			select p.productName, b.no,b.orderday,b.totalprice,b.no, op.product_no,op.num
+			from buy b
+			join orderproduct op on b.no = op.order_no
+			join product p on p.no = op.product_no 
+			where user_no = #{user_no}
+
+
+	]]>
+	</select>
+	
+	<select id="alljumunlist"  resultType="buyvo" >
+	<![CDATA[
+	
+			select op.product_no, b.orderday, p.productName,op.num,b.orderName,b.pay, b.no,b.orderday,b.totalprice,b.no 
+			from buy b
+			join orderproduct op on b.no = op.order_no
+			join product p on p.no = op.product_no 
+			
+
+
+	]]>
+	
+	</select>
+	
+	<select id="getfaqlist"  resultType="faqvo" >
+	<![CDATA[
+	
+			select * from qa;
+
+	]]>
+	
+	</select>
+	
+	<insert id = "addfaq" parameterType="faqvo">
+	 <![CDATA[
+	insert 
+	into qa 
+	values(null,#{qa_title},#{qa_content},#{user_no})
+	
+	]]>
+	</insert>
+	
+	<delete id="deletefaq" parameterType = "Long">
+<![CDATA[
+		
+		delete from qa where no = #{no}
+		
+]]>
+</delete>
+
+
+<update id="updatefaq" parameterType = "faqvo">
+<![CDATA[
+		
+		update qa
+		set qa_title = #{qa_title},
+		qa_content = #{qa_content}
+		where no= #{no}
+		
+]]>
+</update>
+
+<select id="faqbyno"  parameterType = "Long" resultType="faqvo" >
+	<![CDATA[
+	
+			select qa_title, qa_content from qa where no = #{no};
+
+	]]>
+	
+	</select>
+		
+
+<update id="updateproduct" parameterType = "productvo">
+<![CDATA[
+		
+		update product
+		set cate_no = #{cate_no},
+		code = #{code},
+		productName = #{productName},
+		company = #{company},
+		price = #{price},
+		state = #{state},
+		content = #{content},
+		image = #{image},
+		event = #{event},
+		opt_no = #{opt_no}
+		
+		where no = #{no}
+		
+		
+		
+		
+		
+		
+]]>
+</update>
+
+	
+</mapper>
