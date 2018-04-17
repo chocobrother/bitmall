@@ -109,6 +109,8 @@
 											<li class="#"><a
 												href="${pageContext.servletContext.contextPath }/main">Home</a></li>
 											<li><a
+												href="${pageContext.servletContext.contextPath }/${authUser.id}">관리자페이지</a></li>
+											<li><a
 												href="${pageContext.servletContext.contextPath }/user/logout">로그아웃</a></li>
 											<li><a
 												href="${pageContext.servletContext.contextPath }/user/member_modify/${authUser.no}">회원정보 수정</a></li>
