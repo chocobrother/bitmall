@@ -27,9 +27,9 @@
 			<table border="0" cellpadding="0" cellspacing="0" width="747">
 				<tr><td height="13"></td></tr>
 				<tr>
-					<td height="30" align="center">
+					<%-- <td height="30" align="center">
 						<img src="${pageContext.servletContext.contextPath }/assets/images/login_title.gif" width="747" height="30" border="0">
-					</td>
+					</td> --%>
 				</tr>
 				<tr><td height="13"></td></tr>
 			</table>

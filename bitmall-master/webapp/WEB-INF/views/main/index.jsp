@@ -11,27 +11,41 @@
 <head>
 	<title>비트닷컴 쇼핑몰</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+	   <%--  <link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css"> --%>
+	 <link href="${pageContext.servletContext.contextPath }/assets/css/main.css" rel="stylesheet" type="text/css"> 
+	
 	
 </head>
-<body style="margin:0">
+
+
+
+
+<body style="margin:0" class = "homepage">
+
+
+
+
+
+
 <jsp:include page="/WEB-INF/views/include/head.jsp"/>
-<jsp:include page="/WEB-INF/views/include/search.jsp"/>
+<%-- <jsp:include page="/WEB-INF/views/include/search.jsp"/> --%>
+
+
 <table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
 	<tr><td height="10" colspan="2"></td></tr>
 	<tr>
 		<td height="100%" valign="top">
-		  	<jsp:include page="/WEB-INF/views/include/navigation.jsp"/>
+		  	<jsp:include page="/WEB-INF/views/include/navigation.jsp"/> 
 		
-		
-		
+	
 		</td>
 		<td width="10"></td>
 		<td valign="top">
 
 		<!-------------------------------------------------------------------------------------------->	
-		<!-- 시작 : 다른 웹페이지 삽입할 부분                                                                                                                                                            -->
+		<!-- 시작 : 다른 웹페이지 삽입할 부분           -->                                                                                                                                                 
 		<!-------------------------------------------------------------------------------------------->	
+
 
 			<!---- 화면 우측(신상품) 시작 -------------------------------------------------->	
 			<table width="767" border="0" cellspacing="0" cellpadding="0">

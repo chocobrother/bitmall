@@ -22,6 +22,7 @@ import com.cafe24.bitmall.vo.OrderProductVo;
 import com.cafe24.bitmall.vo.ProductVo;
 import com.cafe24.bitmall.vo.UserVo;
 import com.cafe24.mysite.exception.UserDaoException;
+import com.cafe24.security.Auth;
 import com.cafe24.security.AuthUser;
 
 @Controller
@@ -82,6 +83,7 @@ public class UserController {
 	}
 
 	//cate_no
+		@Auth
 		@RequestMapping(value = "/product/{no}", method = RequestMethod.GET)
 		public String product(
 				@PathVariable("no") Long cate_no,
@@ -100,6 +102,7 @@ public class UserController {
 		}
 
 	//product_no
+	@Auth
 	@RequestMapping(value = "/product_detail/{product_no}", method = RequestMethod.GET)
 	public String productDetail(@PathVariable("product_no") String product_no,
 				@AuthUser UserVo vo1,

@@ -6,7 +6,8 @@
 <head>
 	<title>비트닷컴 쇼핑몰</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css">
+	<%-- <link href="${pageContext.servletContext.contextPath }/assets/css/font.css" rel="stylesheet" type="text/css"> --%>
+	 <link href="${pageContext.servletContext.contextPath }/assets/css/main.css" rel="stylesheet" type="text/css">
 	<script
 	src="${pageContext.servletContext.contextPath }/assets/js/jquery/jquery-1.9.0.js"
 	type="text/javascript"></script>
@@ -39,10 +40,14 @@ $(function(){
 
 
 </script>
+<style>
+
+p{
+width:50px;}
+</style>
 </head>
 <body style="margin:0">
-<jsp:include page="/WEB-INF/views/include/head.jsp"/>
-<jsp:include page="/WEB-INF/views/include/search.jsp"/>
+<jsp:include page="/WEB-INF/views/include/head1.jsp"/>
 <table width="959" border="0" cellspacing="0" cellpadding="0" align="center">
 	<tr><td height="10" colspan="2"></td></tr>
 	<tr>
@@ -60,9 +65,9 @@ $(function(){
 			<table border="0" cellpadding="0" cellspacing="0" width="747">
 				<tr><td height="13"></td></tr>
 				<tr>
-					<td height="30" align="center">
+					<%-- <td height="30" align="center">
 						<img src="${pageContext.servletContext.contextPath }/assets/images/login_title.gif" width="747" height="30" border="0">
-					</td>
+					</td> --%>
 				</tr>
 				<tr><td height="47"></td></tr>
 			</table>
@@ -72,9 +77,9 @@ $(function(){
 						<table border="0" cellpadding="0" cellspacing="8" width="523" bgcolor="E9E9E9">
 							<tr>
 								<td height="210" align="center" bgcolor="white">
-									<table border="0" height="120" cellpadding="0" cellspacing="0" width="440">
+									<table border="0" height="100" cellpadding="0" cellspacing="0" width="440">
 										<tr>
-											<td width="120" align="center"><img src="${pageContext.servletContext.contextPath }/assets/images/login_image1.gif" width="110" height="90" border="0"></td>
+											<td width="120" align="center" ><img src="${pageContext.servletContext.contextPath }/assets/images/login_image1.gif" width="110" height="90" border="0"></td>
 											<td width="320">
 												<table border="0" cellpadding="0" cellspacing="0" width="320">
 													<tr>
@@ -87,18 +92,18 @@ $(function(){
 													<!-- form2 시작 ------>
 													<form name = "form2" method = "get" action = "${pageContext.servletContext.contextPath }/user/auth">
 													<tr>
-														<td width="220" height="25">
-															<p style="padding-left:10px;">
+														<td width="50" height="25">
+															<p style="padding-left:10px; width=80;">
 															<img align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/login_id.gif" width="40" height="13" border="0"> 
 															<input id="id" type="text" name="id" size="20" maxlength="12" class="cmfont1">
 															</p>
 														</td>
-														<td width="100" rowspan="2">
+														<td width="50" rowspan="2">
 															<input id = "btn-login" type="image" align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/b_login.gif" width="50" border="0">
 														</td>
 													</tr>
 													<tr>
-														<td width="220" height="25">
+														<td width="50" height="25">
 															<p style="padding-left:10px;">
 															<img align="absmiddle" src="${pageContext.servletContext.contextPath }/assets/images/login_pw.gif" width="40" height="13" border="0"> 
 															<input id = "passwd" type="password" name="passwd" size="20" maxlength="12" class="cmfont1">
